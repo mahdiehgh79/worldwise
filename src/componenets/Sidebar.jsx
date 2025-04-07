@@ -1,4 +1,6 @@
 import styles from "./sidebar.module.css";
+import Logo from "./Logo";
+import AppNav from "./AppNav";
 
 const Sidebar = () => {
   return (
