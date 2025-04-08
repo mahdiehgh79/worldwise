@@ -14,7 +14,12 @@ function App() {
         <Routes>
           <Route index element={<Homepage />} />
           <Route path="product" element={<Product />} />
-          <Route path="app" element={<AppLayout />} />
+          <Route path="app" element={<AppLayout />}>
+            <Route index element={<p>listsss</p>} />
+            <Route path="cities" element={<p>list of citiesss</p>} />
+            <Route path="countries" element={<p>country</p>} />
+            <Route path="form" element={<p>forms</p>} />
+          </Route>
           <Route path="pricing" element={<Pricing />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
