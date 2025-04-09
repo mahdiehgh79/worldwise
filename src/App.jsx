@@ -7,6 +7,7 @@ import PageNav from "./componenets/PageNav";
 import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import CityList from "./componenets/CityList";
+import CountryList from "./componenets/CountryList";
 import { useEffect, useState } from "react";
 
 const BASE_URL = "http://localhost:9000";
@@ -42,7 +43,7 @@ function App() {
           <Route path="app" element={<AppLayout />}>
             <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
             <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
-            <Route path="countries" element={<p>country</p>} />
+            <Route path="countries" element={<CountryList cities={cities} isLoading={isLoading} />}/>
             <Route path="form" element={<p>forms</p>} />
           </Route>
           <Route path="pricing" element={<Pricing />} />
