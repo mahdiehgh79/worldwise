@@ -1,5 +1,4 @@
 import styles from "./Map.module.css";
-import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
 import { useState } from "react";
@@ -9,13 +8,24 @@ const Map = () => {
 
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCities();
-  const maplat = searchParams.get("lat");
-  const maplng = searchParams.get("lng");
+  const {
+    isLoading: isLoadingPosition,
+    position: geolocationPosition,
+    getPosition,
+  } = useGeolocation();
+
+  const [maplat, maplng] = useUrlPosition();
 
   useEffect(() => {
     if (maplat && maplng) setMapPosition([maplat, maplng]);
   }, [maplat, maplng]);
-  
+  useEffect(
+    function () {
+      if (geolocationPosition)
+        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+    },
+    [geolocationPosition]
+  );
   return (
     <div className={styles.mapContainer}>
       <MapContainer
