@@ -11,6 +11,8 @@ import CountryList from "./componenets/CountryList";
 import City from "./componenets/City";
 import Form from "./componenets/Form";
 import { useEffect, useState } from "react";
+import { CitiesProvider } from "./contexts/CitiesContext";
+import { AuthProvider } from "./contexts/FakeAuthContext";
 
 const BASE_URL = "http://localhost:9000";
 
@@ -37,7 +39,8 @@ function App() {
 
 function App() {
   return (
-    <>
+    <AuthProvider>
+      <CitiesProvider>
       <BrowserRouter>
         <Routes>
           <Route index element={<Homepage />} />
@@ -54,6 +57,8 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
+    </CitiesProvider>
+   </AuthProvider>
     </>
   );
 }
