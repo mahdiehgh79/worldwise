@@ -13,6 +13,8 @@ import Form from "./componenets/Form";
 import { useEffect, useState } from "react";
 import { CitiesProvider } from "./contexts/CitiesContext";
 import { AuthProvider } from "./contexts/FakeAuthContext";
+import ProtectedRoute from "./pages/ProtectedRoute";
+
 
 const BASE_URL = "http://localhost:9000";
 
@@ -45,7 +47,14 @@ function App() {
         <Routes>
           <Route index element={<Homepage />} />
           <Route path="product" element={<Product />} />
-          <Route path="app" element={<AppLayout />}>
+          <Route
+              path="app"
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
             <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
             <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
             <Route path="cities/:id" element={<City />} />
